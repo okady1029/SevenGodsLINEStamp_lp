@@ -141,7 +141,7 @@
             z-index: -1;
             filter: brightness(0.4);
             transform: scale(1.05);
-            transform: scale(1.05);
+
             animation: breathe 20s infinite alternate ease-in-out;
             pointer-events: none;
         }
@@ -175,6 +175,7 @@
             line-height: 1.1;
             margin-bottom: 30px;
             background: linear-gradient(45deg, #fff, #aaa);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
@@ -190,12 +191,20 @@
             animation: fadeUp 1s ease forwards 1.1s;
         }
 
-        .btn-primary {
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.4s;
+            position: relative;
+            z-index: 20;
+        }
+
+        .btn-primary,
+        .btn-secondary {
             display: inline-block;
             padding: 15px 40px;
-            background: transparent;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
             font-family: 'Cinzel', serif;
             font-weight: 700;
             letter-spacing: 2px;
@@ -203,10 +212,15 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            opacity: 0;
-            animation: fadeUp 1s ease forwards 1.4s;
-            z-index: 20;
+            transition: all 0.3s ease;
             pointer-events: auto;
+        }
+
+        /* Primary Button (Gold) */
+        .btn-primary {
+            background: rgba(5, 5, 5, 0.8);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
         }
 
         .btn-primary::before {
@@ -228,6 +242,78 @@
 
         .btn-primary:hover::before {
             left: 0;
+        }
+
+        /* Secondary Button (Blue/White style for Bonus) */
+        .btn-secondary {
+            background: rgba(5, 5, 5, 0.8);
+            border: 1px solid #fff;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Flow Section */
+        .flow-steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+        }
+
+        .step-arrow {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            color: var(--accent-gold);
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .step-arrow {
+                transform: rotate(90deg);
+                margin: 20px 0;
+            }
         }
 
         /* About Section */
@@ -310,6 +396,74 @@
             justify-items: center;
         }
 
+        /* Usage Section */
+        .mock-phone {
+            width: 300px;
+            height: 600px;
+            background: #1e1e1e;
+            border-radius: 40px;
+            border: 10px solid #333;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-screen {
+            height: 100%;
+            background: #7289da;
+            /* LINE-ish background color, or dark styled */
+            background: linear-gradient(180deg, #2c3e50, #000);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: hidden;
+        }
+
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .chat-bubble.sent {
+            align-self: flex-end;
+            background: #7bd365;
+            /* LINE green */
+            color: #000;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-bubble.received {
+            align-self: flex-start;
+            background: #fff;
+            color: #000;
+            border-bottom-left-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-sticker {
+            width: 120px;
+            border-radius: 10px;
+        }
+
+        .usage-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .usage-text {
+            max-width: 400px;
+        }
+
         .sticker-item {
             width: 100%;
             max-width: 200px;
@@ -329,6 +483,35 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 50px;
+        }
+
+        .bonus-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-gold);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .bonus-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .bonus-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .bonus-list li::before {
+            content: '♦';
+            color: var(--accent-gold);
+            position: absolute;
+            left: 0;
+            top: 0;
         }
 
         .feature-item {
@@ -378,8 +561,31 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .hero {
+                height: 100dvH;
+                /* Modern mobile viewport unit */
+                min-height: 600px;
+            }
+
+            .hero-bg {
+                background-position: center top;
+                /* Focus on faces/top of image */
+                animation: none;
+                /* Disable zoom animation for performance/stability */
+            }
+
             .hero-title {
                 font-size: 3rem;
+            }
+
+            .hero-desc {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
             }
 
             .about-grid {
@@ -405,9 +611,11 @@
         <nav>
             <ul>
                 <li><a href="#hero">TOP</a></li>
-                <li><a href="#about">ABOUT</a></li>
-                <li><a href="#stickers">STICKERS</a></li>
-                <li><a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank">BUY NOW</a></li>
+                <li><a href="#flow">FLOW</a></li>
+                <li><a href="#about">CONCEPT</a></li>
+                <li><a href="#usage">USAGE</a></li>
+                <li><a href="#stickers">PREVIEW</a></li>
+                <li><a href="#bonus">BONUS</a></li>
             </ul>
         </nav>
     </header>
@@ -421,9 +629,35 @@
                 SEVEN DAOメンバーへ贈る、至高のスタンプコレクション。<br>
                 あなたのトークに「徳」と「彩り」を。
             </p>
-            <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary">
-                View on LINE Store
-            </a>
+            <div class="hero-btns">
+                <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary">
+                    View on LINE Store
+                </a>
+                <a href="#bonus" class="btn-secondary">
+                    Bonus Info
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </section>
+
+    <section id="flow" class="section">
+        <h2 class="section-title english-font">FLOW</h2>
+        <div class="flow-steps">
+            <div class="flow-step">
+                <span class="step-number">01</span>
+                <span class="step-icon">🛒</span>
+                <h3 class="step-title">LINEストアで購入</h3>
+                <p>まずはスタンプを購入して、日常のトークで使いましょう。</p>
+            </div>
+            <div class="step-arrow">▶</div>
+            <div class="flow-step">
+                <span class="step-number">02</span>
+                <span class="step-icon">🎁</span>
+                <h3 class="step-title">特典に応募</h3>
+                <p>購入のスクリーンショットを用意して、特典フォームから応募。</p>
+            </div>
         </div>
     </section>
 
@@ -444,6 +678,33 @@
             <div class="card">
                 <h4 style="color:var(--accent-gold); margin-bottom:15px;">SEVEN DAO EXCLUSIVE</h4>
                 <p>SEVEN DAOの精神を受け継ぐデザイン。コミュニティメンバー同士の結束を深めるための共通言語として、このスタンプは生まれました。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="usage" class="section">
+        <h2 class="section-title english-font">USAGE SCENE</h2>
+        <div class="usage-container">
+            <div class="usage-text">
+                <h3 style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 20px;">トーク画面を<br>神々しく彩る</h3>
+                <p style="margin-bottom: 20px;">普段の会話も、SEVEN GODSのスタンプひとつで特別な儀式のような雰囲気に。</p>
+                <p>「ありがとう」の代わりに「徳」を。「お疲れ様」の代わりに「癒し」を。</p>
+            </div>
+            <div class="mock-phone">
+                <div class="chat-screen">
+                    <div class="chat-bubble sent">
+                        今日はお疲れ様でした！
+                    </div>
+                    <div class="chat-bubble received" style="background: transparent; padding: 0;">
+                        <img src="./sticker1.png" class="chat-sticker">
+                    </div>
+                    <div class="chat-bubble sent">
+                        ありがとうございます🙏
+                    </div>
+                    <div class="chat-bubble received" style="background: transparent; padding: 0;">
+                        <img src="./sticker2.png" class="chat-sticker">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -479,13 +740,42 @@
         </div>
     </section>
 
+    <section id="bonus" class="section">
+        <h2 class="section-title english-font">SPECIAL BONUS</h2>
+        <div class="bonus-box">
+            <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.5rem;">購入者限定特典</h3>
+            <p style="text-align: center; margin-bottom: 30px;">
+                SEVEN GODSスタンプをご購入いただいた皆様へ、感謝の気持ちを込めて。<br>
+                特別なデジタルコンテンツをプレゼントいたします。
+            </p>
+            <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px;">
+                <ul class="bonus-list">
+                    <li><strong>特典内容：</strong> 未公開SEVEN GODS壁紙セット</li>
+                    <li><strong>応募条件：</strong> スタンプ購入画面のスクリーンショット</li>
+                    <li><strong>応募期限：</strong> 2025年12月31日まで</li>
+                    <li><strong>応募方法：</strong> 下記特典フォームより画像を添付して送信</li>
+                </ul>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="#" class="btn-secondary" style="border-color: var(--accent-gold); color: var(--accent-gold);">
+                    特典応募フォームへ (準備中)
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="cta-section">
         <h2 class="cta-title english-font">GET THE GODS</h2>
-        <p style="margin-bottom: 40px; color: #ccc;">今すぐLINEストアで手に入れよう</p>
-        <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary"
-            style="opacity: 1; animation: none;">
-            LINE STOREで購入 ￥250
-        </a>
+        <p style="margin-bottom: 40px; color: #ccc;">あなたのトークに「徳」を。</p>
+        <div class="hero-btns" style="opacity: 1; animation: none;">
+            <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary"
+                style="opacity: 1; animation: none;">
+                LINE STOREで購入 ￥250
+            </a>
+            <a href="#bonus" class="btn-secondary">
+                特典詳細を見る
+            </a>
+        </div>
     </section>
 
     <footer>
