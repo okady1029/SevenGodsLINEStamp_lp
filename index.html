@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVEN GODS | LINE Stamp</title>
+    <meta name="description" content="SEVEN DAOメンバー必見！SEVEN GODSが、あなたのトークにも「徳」を授けます。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #f0f0f0;
+            --accent-gold: #d4af37;
+            --accent-gold-glow: #ffd700;
+            --accent-blue: #00f0ff;
+            --accent-purple: #bc13fe;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 700;
+        }
+
+        .english-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(5, 5, 5, 0.9), rgba(5, 5, 5, 0));
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-color);
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: var(--accent-gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./hero_new.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: brightness(0.4);
+            transform: scale(1.05);
+            animation: breathe 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes breathe {
+            0% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1.15);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.5s;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.8s;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.1s;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.4s;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            color: #000;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        /* About Section */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 20px auto 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+        }
+
+        /* Sticker Preview */
+        .sticker-showcase {
+            text-align: center;
+        }
+
+        .sticker-img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+            margin-bottom: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .sticker-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.2);
+        }
+
+        .sticker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            justify-items: center;
+        }
+
+        .sticker-item {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.2));
+        }
+
+        .sticker-item:hover {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.5));
+            z-index: 10;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 150px 20px;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, rgba(5, 5, 5, 1) 70%);
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--glass-border);
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 20px;
+            }
+
+            nav {
+                display: none;
+                /* Simple hide for now, or could be hamburger */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo english-font">SEVEN <span>GODS</span></div>
+        <nav>
+            <ul>
+                <li><a href="#hero">TOP</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#stickers">STICKERS</a></li>
+                <li><a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank">BUY NOW</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle english-font">TALK WITH VIRTUE</p>
+            <h1 class="hero-title english-font">SEVEN GODS</h1>
+            <p class="hero-desc">
+                SEVEN DAOメンバーへ贈る、至高のスタンプコレクション。<br>
+                あなたのトークに「徳」と「彩り」を。
+            </p>
+            <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary">
+                View on LINE Store
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title english-font">CONCEPT</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>現代に蘇る、七柱の神々</h3>
+                <p>
+                    古来より福をもたらすとされる七福神が、デジタルアートとして新生。<br>
+                    SEVEN GODSは、単なるスタンプではありません。それは、コミュニティにおける「徳」の象徴です。
+                </p>
+                <p>
+                    仲間への賞賛、日々の挨拶、そして特別な瞬間に。<br>
+                    神々の力を借りて、あなたのメッセージをより力強く、より鮮やかに伝えましょう。
+                </p>
+            </div>
+            <div class="card">
+                <h4 style="color:var(--accent-gold); margin-bottom:15px;">SEVEN DAO EXCLUSIVE</h4>
+                <p>SEVEN DAOの精神を受け継ぐデザイン。コミュニティメンバー同士の結束を深めるための共通言語として、このスタンプは生まれました。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="stickers" class="section sticker-showcase">
+        <h2 class="section-title english-font">PREVIEW</h2>
+        <div class="sticker-grid">
+            <img src="./sticker1.png" alt="Sticker 1" class="sticker-item">
+            <img src="./sticker2.png" alt="Sticker 2" class="sticker-item">
+            <img src="./sticker3.png" alt="Sticker 3" class="sticker-item">
+            <img src="./sticker4.png" alt="Sticker 4" class="sticker-item">
+            <img src="./sticker5.png" alt="Sticker 5" class="sticker-item">
+            <img src="./sticker6.png" alt="Sticker 6" class="sticker-item">
+            <img src="./sticker7.png" alt="Sticker 7" class="sticker-item">
+        </div>
+
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon">✨</div>
+                <h4>徳を積む</h4>
+                <p>感謝や賞賛を伝えるのに最適な神々しいデザイン</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🤝</div>
+                <h4>絆を深める</h4>
+                <p>DAOメンバーとのコミュニケーションを円滑に</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <h4>圧倒的表現力</h4>
+                <p>細部までこだわり抜いたハイクオリティなイラスト</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2 class="cta-title english-font">GET THE GODS</h2>
+        <p style="margin-bottom: 40px; color: #ccc;">今すぐLINEストアで手に入れよう</p>
+        <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary"
+            style="opacity: 1; animation: none;">
+            LINE STOREで購入 ￥250
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 okady / SEVEN GODS Project. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-title, .about-text, .card, .sticker-img, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
