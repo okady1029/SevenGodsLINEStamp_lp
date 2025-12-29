@@ -157,10 +157,8 @@
         }
 
         .hero-content {
-            text-align: center;
-            z-index: 10;
-            padding: 20px;
             position: relative;
+            z-index: 1;
         }
 
         .hero-subtitle {
@@ -497,7 +495,7 @@
     <script>
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            addEventListener('click', function (e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
