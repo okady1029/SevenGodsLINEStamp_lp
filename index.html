@@ -257,64 +257,7 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
 
-        /* Flow Section */
-        .flow-steps {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
 
-        .flow-step {
-            flex: 1;
-            min-width: 280px;
-            max-width: 400px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 40px 20px;
-            border-radius: 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: var(--accent-gold);
-            opacity: 0.3;
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-family: 'Cinzel', serif;
-        }
-
-        .step-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .step-title {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--accent-gold);
-        }
-
-        .step-arrow {
-            display: flex;
-            align-items: center;
-            font-size: 2rem;
-            color: var(--accent-gold);
-            opacity: 0.5;
-        }
-
-        @media (max-width: 768px) {
-            .step-arrow {
-                transform: rotate(90deg);
-                margin: 20px 0;
-            }
-        }
 
         /* About Section */
         .section {
@@ -328,15 +271,6 @@
             text-align: center;
             margin-bottom: 60px;
             position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-gold);
-            margin: 20px auto 0;
         }
 
         .about-grid {
@@ -394,6 +328,14 @@
             gap: 20px;
             margin-bottom: 40px;
             justify-items: center;
+        }
+
+        .sticker-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
         }
 
         /* Usage Section */
@@ -598,8 +540,147 @@
 
             nav {
                 display: none;
-                /* Simple hide for now, or could be hamburger */
             }
+
+            /* Fixed CTA for mobile */
+            .fixed-cta {
+                display: flex;
+            }
+
+            /* Sticker Grid Horizontal Scroll */
+            .sticker-grid {
+                grid-template-columns: none;
+                grid-template-rows: repeat(2, 1fr);
+                grid-auto-flow: column;
+                grid-auto-columns: 31%;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+                padding: 10px 20px 30px;
+                margin-left: -20px;
+                margin-right: -20px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: var(--accent-gold) transparent;
+            }
+
+            .sticker-header {
+                flex-direction: column;
+                gap: 10px;
+                margin-bottom: 30px;
+            }
+
+            .sticker-header .section-title {
+                font-size: 2rem;
+            }
+
+            .sticker-grid::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            .sticker-grid::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+                margin: 0 20px;
+            }
+
+            .sticker-grid::-webkit-scrollbar-thumb {
+                background: var(--accent-gold);
+                border-radius: 10px;
+            }
+
+            .sticker-item {
+                scroll-snap-align: start;
+                max-width: none;
+                width: 100%;
+            }
+        }
+
+        /* 3-Step Flow Styles */
+        .step-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .step-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            padding: 30px 20px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-num {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        .step-title-small {
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* FAQ Styles */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .faq-q {
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .faq-a {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        /* Fixed CTA (Mobile) */
+        .fixed-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            display: none;
+            gap: 10px;
+            z-index: 2000;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .fixed-cta .btn-primary,
+        .fixed-cta .btn-secondary {
+            flex: 1;
+            padding: 12px 10px;
+            font-size: 0.8rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -607,15 +688,9 @@
 <body>
 
     <header>
-        <div class="logo english-font">SEVEN <span>GODS</span></div>
+        <a href="#hero" class="logo english-font">SEVEN <span>GODS</span></a>
         <nav>
             <ul>
-                <li><a href="#hero">TOP</a></li>
-                <li><a href="#flow">FLOW</a></li>
-                <li><a href="#about">CONCEPT</a></li>
-                <li><a href="#usage">USAGE</a></li>
-                <li><a href="#stickers">PREVIEW</a></li>
-                <li><a href="#bonus">BONUS</a></li>
             </ul>
         </nav>
     </header>
@@ -624,44 +699,29 @@
         <div class="hero-bg"></div>
         <div class="hero-content">
             <h1 class="hero-title english-font">SEVEN GODS</h1>
+            <p
+                style="color: var(--accent-gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s ease forwards 0.9s;">
+                SEVEN DAO限定｜LINEスタンプ全24種｜¥250｜購入者特典付
+            </p>
             <p class="hero-desc">
-                SEVEN DAOメンバーへ贈る、至高のスタンプコレクション。<br>
+                DAO内の挨拶・称賛・盛り上げが1タップで伝わる。<br>
                 あなたのトークに「徳」と「彩り」を。
             </p>
             <div class="hero-btns">
-                <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary">
-                    View on LINE Store
+                <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary"
+                    style="background: var(--accent-gold); color: #000;">
+                    スタンプを購入する
                 </a>
                 <a href="#bonus" class="btn-secondary">
-                    Bonus Info
+                    購入者限定特典
                 </a>
             </div>
         </div>
     </section>
 
-    </section>
-
-    <section id="flow" class="section">
-        <h2 class="section-title english-font">FLOW</h2>
-        <div class="flow-steps">
-            <div class="flow-step">
-                <span class="step-number">01</span>
-                <span class="step-icon">🛒</span>
-                <h3 class="step-title">LINEストアで購入</h3>
-                <p>まずはスタンプを購入して、日常のトークで使いましょう。</p>
-            </div>
-            <div class="step-arrow">▶</div>
-            <div class="flow-step">
-                <span class="step-number">02</span>
-                <span class="step-icon">🎁</span>
-                <h3 class="step-title">特典に応募</h3>
-                <p>購入のスクリーンショットを用意して、特典フォームから応募。</p>
-            </div>
-        </div>
-    </section>
 
     <section id="about" class="section">
-        <h2 class="section-title english-font">CONCEPT</h2>
+
         <div class="about-grid">
             <div class="about-text">
                 <h3>現代に蘇る、七柱の神々</h3>
@@ -682,7 +742,7 @@
     </section>
 
     <section id="usage" class="section">
-        <h2 class="section-title english-font">USAGE SCENE</h2>
+
         <div class="usage-container">
             <div class="usage-text">
                 <h3 style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 20px;">トーク画面を<br>神々しく彩る</h3>
@@ -695,13 +755,13 @@
                         今日はお疲れ様でした！
                     </div>
                     <div class="chat-bubble received" style="background: transparent; padding: 0;">
-                        <img src="./sticker1.png" class="chat-sticker">
+                        <img src="./image/11.png" class="chat-sticker">
                     </div>
                     <div class="chat-bubble sent">
                         ありがとうございます🙏
                     </div>
                     <div class="chat-bubble received" style="background: transparent; padding: 0;">
-                        <img src="./sticker2.png" class="chat-sticker">
+                        <img src="./image/02.png" class="chat-sticker">
                     </div>
                 </div>
             </div>
@@ -709,15 +769,39 @@
     </section>
 
     <section id="stickers" class="section sticker-showcase">
-        <h2 class="section-title english-font">PREVIEW</h2>
+        <div class="sticker-header">
+            <h2 class="section-title" style="margin-bottom: 0;">スタンプ一覧</h2>
+            <div
+                style="width: 180px; height: 120px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <img src="./image/all24_illust.png" alt="全24種"
+                    style="width: 180px; height: 180px; object-fit: cover; object-position: center 30%; mix-blend-mode: screen; filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));">
+            </div>
+        </div>
         <div class="sticker-grid">
-            <img src="./sticker1.png" alt="Sticker 1" class="sticker-item">
-            <img src="./sticker2.png" alt="Sticker 2" class="sticker-item">
-            <img src="./sticker3.png" alt="Sticker 3" class="sticker-item">
-            <img src="./sticker4.png" alt="Sticker 4" class="sticker-item">
-            <img src="./sticker5.png" alt="Sticker 5" class="sticker-item">
-            <img src="./sticker6.png" alt="Sticker 6" class="sticker-item">
-            <img src="./sticker7.png" alt="Sticker 7" class="sticker-item">
+            <img src="./image/01.png" alt="Sticker 01" class="sticker-item" loading="lazy">
+            <img src="./image/02.png" alt="Sticker 02" class="sticker-item" loading="lazy">
+            <img src="./image/03.png" alt="Sticker 03" class="sticker-item" loading="lazy">
+            <img src="./image/04.png" alt="Sticker 04" class="sticker-item" loading="lazy">
+            <img src="./image/05.png" alt="Sticker 05" class="sticker-item" loading="lazy">
+            <img src="./image/06.png" alt="Sticker 06" class="sticker-item" loading="lazy">
+            <img src="./image/07.png" alt="Sticker 07" class="sticker-item" loading="lazy">
+            <img src="./image/08.png" alt="Sticker 08" class="sticker-item" loading="lazy">
+            <img src="./image/09.png" alt="Sticker 09" class="sticker-item" loading="lazy">
+            <img src="./image/10.png" alt="Sticker 10" class="sticker-item" loading="lazy">
+            <img src="./image/11.png" alt="Sticker 11" class="sticker-item" loading="lazy">
+            <img src="./image/12.png" alt="Sticker 12" class="sticker-item" loading="lazy">
+            <img src="./image/13.png" alt="Sticker 13" class="sticker-item" loading="lazy">
+            <img src="./image/14.png" alt="Sticker 14" class="sticker-item" loading="lazy">
+            <img src="./image/15.png" alt="Sticker 15" class="sticker-item" loading="lazy">
+            <img src="./image/16.png" alt="Sticker 16" class="sticker-item" loading="lazy">
+            <img src="./image/17.png" alt="Sticker 17" class="sticker-item" loading="lazy">
+            <img src="./image/18.png" alt="Sticker 18" class="sticker-item" loading="lazy">
+            <img src="./image/19.png" alt="Sticker 19" class="sticker-item" loading="lazy">
+            <img src="./image/20.png" alt="Sticker 20" class="sticker-item" loading="lazy">
+            <img src="./image/21.png" alt="Sticker 21" class="sticker-item" loading="lazy">
+            <img src="./image/22.png" alt="Sticker 22" class="sticker-item" loading="lazy">
+            <img src="./image/23.png" alt="Sticker 23" class="sticker-item" loading="lazy">
+            <img src="./image/24.png" alt="Sticker 24" class="sticker-item" loading="lazy">
         </div>
 
         <div class="features">
@@ -740,26 +824,60 @@
     </section>
 
     <section id="bonus" class="section">
-        <h2 class="section-title english-font">SPECIAL BONUS</h2>
         <div class="bonus-box">
-            <h3 style="text-align: center; margin-bottom: 30px; font-size: 1.5rem;">購入者限定特典</h3>
-            <p style="text-align: center; margin-bottom: 30px;">
-                SEVEN GODSスタンプをご購入いただいた皆様へ、感謝の気持ちを込めて。<br>
-                特別なデジタルコンテンツをプレゼントいたします。
+            <h3 style="text-align: center; margin-bottom: 10px; font-size: 1.8rem; color: var(--accent-gold);">購入者限定特典
+            </h3>
+            <p style="text-align: center; margin-bottom: 40px; color: #aaa;">
+                スタンプ購入者全員を、限定Discordサーバーへご招待します。
             </p>
-            <div style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px;">
-                <ul class="bonus-list">
-                    <li><strong>特典内容：</strong> LINEスタンプと同じスタンプや絵文字が使える限定Discordへ招待</li>
-                    <li><strong>応募条件：</strong> スタンプ購入画面のスクリーンショット</li>
-                    <li><strong>応募方法：</strong> 下記特典フォームより画像を添付して送信</li>
-                </ul>
+
+            <div class="step-container">
+                <div class="step-card">
+                    <span class="step-num">01</span>
+                    <p class="step-title-small">スタンプ購入</p>
+                    <p style="font-size: 0.85rem;">LINEストアでSEVEN GODSスタンプを購入（¥250）</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">02</span>
+                    <p class="step-title-small">スクショ撮影</p>
+                    <p style="font-size: 0.85rem;">LINEストアの購入完了画面、またはスタンプ設定画面を保存</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-num">03</span>
+                    <p class="step-title-small">特典に応募</p>
+                    <p style="font-size: 0.85rem;">専用フォームに画像を添付して送信。完了後、Discord招待を順次送付</p>
+                </div>
             </div>
-            <div style="text-align: center; margin-top: 30px;">
+
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 0.9rem; margin-bottom: 20px; color: #666;">
+                    所要時間：約1分 ／ 招待送付：最大3日以内
+                </p>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSewTu2evzb8fL7z9n6ljpA9hWSrj2ffDdyf5zUzHvz3S2zrUg/viewform"
-                    target="_blank" class="btn-secondary"
-                    style="border-color: var(--accent-gold); color: var(--accent-gold);">
-                    特典応募フォームへ
+                    target="_blank" class="btn-primary"
+                    style="background: var(--accent-gold); color: #000; padding: 15px 60px;">
+                    特典に応募する
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section">
+        <h3 style="text-align: center; margin-bottom: 50px; font-size: 1.8rem; color: var(--accent-gold);">よくあるご質問</h3>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-q"><span>Q.</span> スクリーンショットはどこを撮ればいいですか？</div>
+                <div class="faq-a">A. 「LINE STOREの購入履歴画面」または「LINEアプリ内のスタンプ管理画面」で、SEVEN
+                    GODSスタンプを所有していることが確認できる状態であればOKです。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q"><span>Q.</span> 応募に個人情報は必要ですか？</div>
+                <div class="faq-a">A. 特典（Discord招待）の送付先としてメールアドレス、またはSNSアカウント情報が必要となります。それら以外の過度な個人情報は不要ですのでご安心ください。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q"><span>Q.</span> 招待はいつ届きますか？</div>
+                <div class="faq-a">A. 通常、申請から2〜3日以内（最大3日）に送付させていただきます。</div>
             </div>
         </div>
     </section>
@@ -781,6 +899,16 @@
     <footer>
         <p>&copy; 2025 okady / SEVEN GODS Project. All Rights Reserved.</p>
     </footer>
+
+    <div class="fixed-cta">
+        <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary"
+            style="background: var(--accent-gold); color: #000;">
+            スタンプを購入
+        </a>
+        <a href="#bonus" class="btn-secondary">
+            特典に応募
+        </a>
+    </div>
 
     <script>
         // Smooth scroll for anchor links
