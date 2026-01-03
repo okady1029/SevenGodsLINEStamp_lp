@@ -273,11 +273,10 @@
             position: relative;
         }
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .about-text h3 {
@@ -501,28 +500,14 @@
             }
         }
 
-        /* Mobile Responsive */
+        /* Line break control */
+        .mobile-only {
+            display: none;
+        }
+
         @media (max-width: 768px) {
-            .hero {
-                height: 100dvH;
-                /* Modern mobile viewport unit */
-                min-height: 600px;
-            }
-
-            .hero-bg {
-                background-position: center top;
-                /* Focus on faces/top of image */
-                animation: none;
-                /* Disable zoom animation for performance/stability */
-            }
-
-            .hero-title {
-                font-size: 3rem;
-            }
-
-            .hero-desc {
-                font-size: 1rem;
-                padding: 0 20px;
+            .mobile-only {
+                display: block;
             }
 
             .hero-btns {
@@ -530,8 +515,63 @@
                 gap: 15px;
             }
 
-            .about-grid {
-                grid-template-columns: 1fr;
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: flex-end;
+                padding-bottom: 65px;
+                text-align: center;
+            }
+
+            .hero-content::before {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 60%;
+                background: linear-gradient(to top, rgba(5, 5, 5, 1) 30%, rgba(5, 5, 5, 0.8) 60%, rgba(5, 5, 5, 0) 100%);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            .hero-content>* {
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero-bg {
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center top;
+                height: 50%;
+                top: 60px;
+                filter: brightness(0.8);
+                animation: none;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+                margin-bottom: 15px;
+                text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+                position: relative;
+                z-index: 2;
+                padding: 0 10px;
+            }
+
+            .hero-desc {
+                font-size: 0.95rem;
+                padding: 0 20px;
+                margin-bottom: 30px;
+            }
+
+            .about-content {
+                text-align: center;
+            }
+
+            .usage-text {
+                text-align: center;
             }
 
             header {
@@ -701,7 +741,7 @@
             <h1 class="hero-title english-font">SEVEN GODS</h1>
             <p
                 style="color: var(--accent-gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 20px; opacity: 0; animation: fadeUp 1s ease forwards 0.9s;">
-                SEVEN DAO限定｜LINEスタンプ全24種｜¥250｜購入者特典付
+                LINEスタンプ全24種｜¥250｜購入者特典付
             </p>
             <p class="hero-desc">
                 DAO内の挨拶・称賛・盛り上げが1タップで伝わる。<br>
@@ -721,8 +761,7 @@
 
 
     <section id="about" class="section">
-
-        <div class="about-grid">
+        <div class="about-content">
             <div class="about-text">
                 <h3>現代に蘇る、七柱の神々</h3>
                 <p>
@@ -734,10 +773,6 @@
                     神々の力を借りて、あなたのメッセージをより力強く、より鮮やかに伝えましょう。
                 </p>
             </div>
-            <div class="card">
-                <h4 style="color:var(--accent-gold); margin-bottom:15px;">SEVEN DAO EXCLUSIVE</h4>
-                <p>SEVEN DAOの精神を受け継ぐデザイン。コミュニティメンバー同士の結束を深めるための共通言語として、このスタンプは生まれました。</p>
-            </div>
         </div>
     </section>
 
@@ -745,9 +780,10 @@
 
         <div class="usage-container">
             <div class="usage-text">
-                <h3 style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 20px;">トーク画面を<br>神々しく彩る</h3>
-                <p style="margin-bottom: 20px;">普段の会話も、SEVEN GODSのスタンプひとつで特別な儀式のような雰囲気に。</p>
-                <p>「ありがとう」の代わりに「徳」を。「お疲れ様」の代わりに「癒し」を。</p>
+                <h3 style="font-size: 1.8rem; color: var(--accent-gold); margin-bottom: 20px;">トーク画面を神々しく彩る</h3>
+                <p style="margin-bottom: 20px;">
+                    普段の会話も、SEVEN GODSのスタンプひとつで特別な儀式のような雰囲気に。
+                </p>
             </div>
             <div class="mock-phone">
                 <div class="chat-screen">
@@ -804,23 +840,7 @@
             <img src="./image/24.png" alt="Sticker 24" class="sticker-item" loading="lazy">
         </div>
 
-        <div class="features">
-            <div class="feature-item">
 
-                <h4>徳を積む</h4>
-                <p>感謝や賞賛を伝えるのに最適な神々しいデザイン</p>
-            </div>
-            <div class="feature-item">
-
-                <h4>絆を深める</h4>
-                <p>DAOメンバーとのコミュニケーションを円滑に</p>
-            </div>
-            <div class="feature-item">
-
-                <h4>圧倒的表現力</h4>
-                <p>細部までこだわり抜いたハイクオリティなイラスト</p>
-            </div>
-        </div>
     </section>
 
     <section id="bonus" class="section">
@@ -828,24 +848,36 @@
             <h3 style="text-align: center; margin-bottom: 10px; font-size: 1.8rem; color: var(--accent-gold);">購入者限定特典
             </h3>
             <p style="text-align: center; margin-bottom: 40px; color: #aaa;">
-                スタンプ購入者全員を、限定Discordサーバーへご招待します。
+                スタンプ購入者全員を、限定Discordサーバーへご招待！<br>
+                Discordに課金をしている方は他のサーバーでもスタンプや絵文字を活用できます。
             </p>
 
             <div class="step-container">
                 <div class="step-card">
                     <span class="step-num">01</span>
                     <p class="step-title-small">スタンプ購入</p>
-                    <p style="font-size: 0.85rem;">LINEストアでSEVEN GODSスタンプを購入（¥250）</p>
+                    <p style="font-size: 0.85rem;">
+                        <span style="display: inline-block;">LINEストアで</span>
+                        <span style="display: inline-block;">SEVEN GODSスタンプを</span>
+                        <span style="display: inline-block;">購入（¥250）</span>
+                    </p>
                 </div>
                 <div class="step-card">
                     <span class="step-num">02</span>
                     <p class="step-title-small">スクショ撮影</p>
-                    <p style="font-size: 0.85rem;">LINEストアの購入完了画面、またはスタンプ設定画面を保存</p>
+                    <p style="font-size: 0.85rem;">
+                        <span style="display: inline-block;">LINEストアの購入完了画面</span>
+                        <span style="display: inline-block;">または</span>
+                        <span style="display: inline-block;">スタンプ設定画面を保存</span>
+                    </p>
                 </div>
                 <div class="step-card">
                     <span class="step-num">03</span>
                     <p class="step-title-small">特典に応募</p>
-                    <p style="font-size: 0.85rem;">専用フォームに画像を添付して送信。完了後、Discord招待を順次送付</p>
+                    <p style="font-size: 0.85rem;">
+                        <span style="display: inline-block;">専用フォームに</span>
+                        <span style="display: inline-block;">画像を添付して送信。</span>
+                    </p>
                 </div>
             </div>
 
@@ -853,11 +885,16 @@
                 <p style="font-size: 0.9rem; margin-bottom: 20px; color: #666;">
                     所要時間：約1分 ／ 招待送付：最大3日以内
                 </p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSewTu2evzb8fL7z9n6ljpA9hWSrj2ffDdyf5zUzHvz3S2zrUg/viewform"
-                    target="_blank" class="btn-primary"
-                    style="background: var(--accent-gold); color: #000; padding: 15px 60px;">
-                    特典に応募する
-                </a>
+                <div class="hero-btns" style="opacity: 1; animation: none;">
+                    <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary"
+                        style="background: var(--accent-gold); color: #000; padding: 15px 40px;">
+                        スタンプを購入する
+                    </a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSewTu2evzb8fL7z9n6ljpA9hWSrj2ffDdyf5zUzHvz3S2zrUg/viewform"
+                        target="_blank" class="btn-secondary" style="padding: 15px 40px;">
+                        特典に応募する
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -872,29 +909,17 @@
             </div>
             <div class="faq-item">
                 <div class="faq-q"><span>Q.</span> 応募に個人情報は必要ですか？</div>
-                <div class="faq-a">A. 特典（Discord招待）の送付先としてメールアドレス、またはSNSアカウント情報が必要となります。それら以外の過度な個人情報は不要ですのでご安心ください。
+                <div class="faq-a">A. 特典（Discord招待）の送付先としてDiscordアカウント情報が必要となります。それら以外の過度な個人情報は不要ですのでご安心ください。
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-q"><span>Q.</span> 招待はいつ届きますか？</div>
-                <div class="faq-a">A. 通常、申請から2〜3日以内（最大3日）に送付させていただきます。</div>
+                <div class="faq-a">A. 通常、申請から3日以内にDMさせていただきます。</div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
-        <h2 class="cta-title english-font">GET THE GODS</h2>
-        <p style="margin-bottom: 40px; color: #ccc;">あなたのトークに「徳」を。</p>
-        <div class="hero-btns" style="opacity: 1; animation: none;">
-            <a href="https://store.line.me/stickershop/product/32042448/ja" target="_blank" class="btn-primary"
-                style="opacity: 1; animation: none;">
-                LINE STOREで購入 ￥250
-            </a>
-            <a href="#bonus" class="btn-secondary">
-                特典詳細を見る
-            </a>
-        </div>
-    </section>
+
 
     <footer>
         <p>&copy; 2025 okady / SEVEN GODS Project. All Rights Reserved.</p>
